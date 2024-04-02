@@ -5,7 +5,6 @@ import {
   Image,
   List,
   ListItem,
-  Text,
 } from "@chakra-ui/react";
 import useGenre from "../hooks/useGenre";
 import getCroppedImage from "../services/image-url";
@@ -17,8 +16,9 @@ interface Props {
 }
 
 const GenreList = ({ onSelect, selectedGenre }: Props) => {
-  const { data, isLoading } = useGenre();
+  const { data, isLoading, error } = useGenre();
   const skeletons = [1, 2, 3, 4, 5, 6, 7, 8];
+  if (error) return null;
   return (
     <>
       <Heading fontSize="2xl" marginBottom={2}>
